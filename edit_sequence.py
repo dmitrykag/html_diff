@@ -1,7 +1,8 @@
 def replace_cost(sequence1, sequence2, index1, index2):
+    len1, len2 = len(sequence1[index1]), len(sequence2[index2])
     if sequence1[index1] == sequence2[index2]:
         return 0
-    elif abs(index1 - index2) > 5:
+    elif abs(index1 - index2) > 5 or abs(len1 - len2) > (len1 + len2) / 5:
         return len(sequence1[index1]) + len(sequence2[index2])
     elif len(sequence1) == len(sequence2) == 1:
         return 1
