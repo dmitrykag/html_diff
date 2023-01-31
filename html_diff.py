@@ -25,30 +25,28 @@ def get_html(first, second):
     header = '<html><head></head><body><table border="1" style="border-collapse:collapse";>\n'
     footer = '</table></body></html>'
 
-    lines1 = first.split('\n')
-    lines2 = second.split('\n')
+    lines1 = first.splitlines()
+    lines2 = second.splitlines()
 
     diff = edit_sequence.edit_sequence(lines1, lines2)
 
     content = ''
-    prev = diff[0]
-    for i in range(1, len(diff)):
+    for edit in diff:
         row = '<tr>'
-        if diff[i][0] == prev[0]:
-            cells = '<td /><td>' + lines2[diff[i][1]] + '</td>'
+        if edit[0] == -1:
+            cells = '<td /><td>' + lines2[edit[1]] + '</td>'
             row = '<tr bgcolor="LightBlue">'
-        elif diff[i][1] == prev[1]:
-            cells = '<td>' + lines1[diff[i][0]] + '</td><td />'
+        elif edit[1] == -1:
+            cells = '<td>' + lines1[edit[0]] + '</td><td />'
             row = '<tr bgcolor="LightBlue">'
         else:
-            if lines1[diff[i][0]] != lines2[diff[i][1]]:            
+            if lines1[edit[0]] != lines2[edit[1]]:
                 row = '<tr bgcolor="pink">'
         
-            cells = '<td>' + lines1[diff[i][0]] + '</td>'
-            cells += '<td>' + lines2[diff[i][1]] + '</td>'
+            cells = '<td>' + lines1[edit[0]] + '</td>'
+            cells += '<td>' + lines2[edit[1]] + '</td>'
 
         content += row + cells + '</tr>\n'
-        prev = diff[i]
 
     return header + content + footer
 
