@@ -15,10 +15,10 @@ def replace_cost(sequence1, sequence2, index1, index2):
 def diff_matrix(sequence1, sequence2):
         matrix = [[None]*(len(sequence2) + 1) for i in range(len(sequence1) + 1)]
         for i in range(len(matrix[0])):
-            matrix[0][i] = (i, -1, i-1)
+            matrix[0][i] = (i, 0, i-1)
         
         for i in range(len(matrix)):
-            matrix[i][0] = (i, i-1, -1)
+            matrix[i][0] = (i, i-1, 0)
 
         for i in range(1, len(matrix)):
             for j in range(1, len(matrix[i])):
@@ -57,7 +57,7 @@ def edit_sequence(sequence1, sequence2):
             if rev[i][0] == prev[0]:
                 result.append((-1, rev[i][1]))
             elif rev[i][1] == prev[1]:
-                result.append((rev[i][1], -1))
+                result.append((rev[i][0], -1))
             else:
                 result.append(rev[i])
             prev = rev[i]
@@ -81,4 +81,3 @@ if __name__ == "__main__":
     diff = edit_sequence("intention", "execution")
     print(diff)
     explain("intention", "execution", diff)
-
