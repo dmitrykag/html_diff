@@ -4,45 +4,13 @@
     <body>
         Hello, everyone!
 
-        <!-- <input id="file-input" type="file" name="name" style="display: none;" />
-
-        <script>
-            var input = document.getElementById('file-input')
-
-            input.onchange = e => {
-               // getting a hold of the file reference
-               var file = e.target.files[0];
-
-               // setting up the reader
-               var reader = new FileReader();
-               reader.readAsText(file,'UTF-8');
-
-               // here we tell the reader what to do when it's done reading...
-               reader.onload = readerEvent => {
-                    var content = readerEvent.target.result; // this is the content!
-                    console.log( content );
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "/show_file", true);
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.send(JSON.stringify({
-                        "content": content
-                    }));
-               }
-            }
-
-            // input.click();
-        </script>
-
-        <!-- <button onclick="document.getElementById('file-input').click();">Open</button> -->
- -->
         <br />
 
         <form id="fileload" enctype="multipart/form-data" method="POST" action="/show_file">
             <input type="file" name="first_file" />
             <input type="file" name="second_file" />
             <button type="submit" form="fileload" formaction="/show_file">
-                Загрузить файл
+                Загрузить файлы
             </button>
         </form>
 
